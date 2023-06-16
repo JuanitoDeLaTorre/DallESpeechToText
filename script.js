@@ -1,5 +1,6 @@
 // const { Configuration, OpenAIApi } = require("openai");
 // import { writeFileSync } from "fs";
+import OPEN_AI_KEY from "./api_keys.js";
 
 // import openai from "https://cdn.jsdelivr.net/npm/openai@3.3.0/dist/index.min.js";
 
@@ -9,15 +10,12 @@ button.addEventListener("click", () => {
 });
 
 document.querySelector("#generateButton").addEventListener("click", () => {
-  console.log($("#prompt").innerText);
+  console.log(document.querySelector("#prompt").innerText);
   console.log("swag");
+  console.log(OPEN_AI_KEY);
 });
 
 // require("dotenv").config();
-
-// const configuration = new Configuration({
-//   apiKey: "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",
-// });
 
 // const api = new OpenAIApi(configuration);
 
