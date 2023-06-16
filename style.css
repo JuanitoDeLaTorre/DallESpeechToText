@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,100;1,300;1,400&display=swap');
+body {
+    background-color: rgb(53, 53, 53);
+    color: white;
+    font-family: 'Montserrat';
+}
+
+.outputBox {
+    width: 500px;
+    background-color: rgb(125, 125, 125);
+    height: 300px;
+    margin-left: 30%;
+    margin-top: 10%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px white;
+    padding: 5%;
+    transition: all 1000ms ease-in-out;
+    /* color: rgb(230, 196, 104); */
+    /* animation: 2s spin cubic-bezier(0.075, 0.82, 0.165, 1); */
+}
+
+@keyframes spin {
+    100% {transform: rotate(360deg)}
+}
+
+@keyframes glow {
+    50% {box-shadow: 0px 0px 30px white;}
+    100% {box-shadow: 0px 0px 10px white;}
+}
