@@ -50,7 +50,6 @@ let promptBox = document.querySelector("#prompt");
 p.classList.add("text");
 let compare = [];
 let started = false;
-let promptString = "";
 
 recognition.addEventListener("result", (e) => {
   let text = Array.from(e.results)
@@ -60,11 +59,6 @@ recognition.addEventListener("result", (e) => {
 
   p.innerText = text;
   textBox.appendChild(p);
-
-  if (started) {
-    promptString += p.innerText.split(" ")[p.innerText.split(" ").length - 1];
-  }
-  console.log(promptString);
 
   compare.push(p.innerText.split(" ")[p.innerText.split(" ").length - 1]);
 
@@ -96,8 +90,6 @@ recognition.addEventListener("result", (e) => {
   if (compare.includes("pause")) {
     textBox.style.backgroundColor = "rgb(230, 196, 104)";
     compare = [];
-    // text = "";
-    // textBox.innerHTML = "";
   }
 
   if (compare.includes("spin")) {
@@ -106,16 +98,11 @@ recognition.addEventListener("result", (e) => {
       textBox.style.animation = "none";
     }, 2000);
     compare = [];
-    // text = "";
-    // textBox.innerHTML = "";
   }
 
   if (compare.includes("glow")) {
     textBox.style.animation = "glow 2s ease-in-out infinite";
-    // textBox.style.boxShadow = "0px 0px 30px white";
     compare = [];
-    // text = "";
-    // textBox.innerHTML = "";
   }
 });
 
