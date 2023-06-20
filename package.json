@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.1.4",
-    "openai": "^3.3.0"
+    "openai": "^3.3.0",
+    "pexels": "^1.4.0"
   }
 }

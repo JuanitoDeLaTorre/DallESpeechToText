@@ -1,6 +1,11 @@
 // const { Configuration, OpenAIApi } = require("openai");
 // import { writeFileSync } from "fs";
 import OPEN_AI_KEY from "./api_keys.js";
+import PEXELS_API_KEY from "./api_keys.js";
+import { createClient } from "pexels";
+
+const client = createClient(PEXELS_API_KEY);
+const query = "Nature";
 
 // import openai from "https://cdn.jsdelivr.net/npm/openai@3.3.0/dist/index.min.js";
 
@@ -9,11 +14,30 @@ button.addEventListener("click", () => {
   console.log("swag");
 });
 
-document.querySelector("#generateButton").addEventListener("click", () => {
-  console.log(document.querySelector("#prompt").innerText);
-  console.log("swag");
-  console.log(OPEN_AI_KEY);
-});
+document
+  .querySelector("#generateButton")
+  .addEventListener("click", async () => {
+    console.log(document.querySelector("#prompt").innerText);
+    console.log("swag");
+    console.log(OPEN_AI_KEY);
+    const res = await fetch(
+      "https://api.pexels.com/v1/search?query=" +
+        "swagger" +
+        "&orientation=landscape&size=large&per_page=25",
+      {
+        headers: { Authorization: PEXELS_API_KEY },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        images = json["photos"];
+      });
+
+    console.log(res);
+  });
+
+let sample_url =
+  "https://i0.wp.com/boingboing.net/wp-content/uploads/2022/06/Screen-Shot-2022-06-15-at-9.34.25-AM.jpg?fit=1238%2C918&ssl=1";
 
 // require("dotenv").config();
 
