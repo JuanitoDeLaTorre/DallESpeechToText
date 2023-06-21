@@ -8,15 +8,23 @@ body {
 .outputBox {
     width: 500px;
     background-color: rgb(125, 125, 125);
-    height: 300px;
-    margin-left: 30%;
-    margin-top: 10%;
+    height: 50px;
+    /* margin-left: 35%; */
+    margin-top: 2%;
     border-radius: 20px;
     box-shadow: 0px 0px 10px white;
-    padding: 5%;
-    transition: all 1000ms ease-in-out;
+    padding: 10px;
+    transition: animation 1000ms ease-in-out;
     /* color: rgb(230, 196, 104); */
     /* animation: 2s spin cubic-bezier(0.075, 0.82, 0.165, 1); */
+}
+
+#imageBox {
+    width: 100%;
+    height: auto;
+    /* border: solid red 2px; */
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @keyframes spin {
@@ -26,4 +34,21 @@ body {
 @keyframes glow {
     50% {box-shadow: 0px 0px 30px white;}
     100% {box-shadow: 0px 0px 10px white;}
+}
+
+#resultImage {
+    width: 150px;
+    height: 150px;
+    border: solid white 2px;
+    border-radius: 5px;
+    margin: 10px;
+    background-size: cover;
+    transition: transform 400ms ease-in-out;
+}
+
+#resultImage:hover {
+    transform: scale(110%);
+    box-shadow: 0px 0px 10px white;
+    cursor: pointer;
+
 }
