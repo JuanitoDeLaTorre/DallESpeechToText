@@ -82,9 +82,12 @@ recognition.continuous = true;
 let p = document.createElement("p");
 let promptBox = document.querySelector("#prompt");
 
+let numberToDownload = 0;
+
 p.classList.add("text");
 let compare = [];
 let searchPerformed = false; // Flag variable to track if search action has been performed
+let downloadPerformed = false; // Flag variable to track if download action has been performed
 
 recognition.addEventListener("result", (e) => {
   let text = Array.from(e.results)
@@ -153,6 +156,54 @@ recognition.addEventListener("result", (e) => {
 
     compare = [];
   }
+
+  if (compare.includes("download") && !downloadPerformed) {
+    console.log("listening");
+    downloadPerformed = true;
+
+    setTimeout(() => {
+      if (!parseInt(compare[compare.length - 1])) {
+        numberToDownload = wordToNumber(compare[compare.length - 1]);
+        // console.log(wordToNumber(compare[compare.length - 1]));
+      } else {
+        numberToDownload = parseInt(compare[compare.length - 1]);
+      }
+      console.log(numberToDownload);
+      console.log(Array.from(document.querySelectorAll("#resultImage")));
+      console.log(
+        Array.from(document.querySelectorAll("#resultImage"))[
+          numberToDownload - 1
+        ]
+      );
+
+      let imgURL = Array.from(document.querySelectorAll("#resultImage"))[
+        numberToDownload - 1
+      ].style.backgroundImage.match(/url\("([^"]+)"\)/)[1];
+      let prompt = document.querySelector("#prompt").value;
+
+      fetch(imgURL)
+        .then((response) => response.blob())
+        .then((blob) => {
+          // Create a download link
+          const downloadLink = document.createElement("a");
+          downloadLink.href = URL.createObjectURL(blob);
+
+          // Set the filename for the download
+          downloadLink.download = prompt + ".jpg";
+
+          // Programmatically click the download link to initiate the download
+          downloadLink.click();
+
+          // Clean up by revoking the object URL
+          URL.revokeObjectURL(downloadLink.href);
+        })
+        .catch((error) => {
+          console.error("Error downloading the image:", error);
+        });
+    }, 3000);
+
+    compare = [];
+  }
 });
 
 document.querySelector("#stop").addEventListener("click", () => {
@@ -190,3 +241,31 @@ document.addEventListener("click", async (e) => {
       });
   }
 });
+
+function wordToNumber(word) {
+  const mapping = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    ten: 10,
+    eleven: 11,
+    twelve: 12,
+    thirteen: 13,
+    fourteen: 14,
+    fifteen: 15,
+    sixteen: 16,
+    seventeen: 17,
+    eighteen: 18,
+    nineteen: 19,
+    twenty: 20,
+  };
+
+  return mapping[word] || NaN;
+}
