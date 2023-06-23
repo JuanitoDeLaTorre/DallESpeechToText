@@ -1,4 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,100;1,300;1,400&display=swap');
+
+/* // Colors
+$bg-color: hsl(256,33,10);
+$dot-color: hsl(256,33,70);
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 22px; */
+
+body {
+	background:
+		linear-gradient(90deg, hsl(256,33,10) (22px - 1px), transparent 1%) center,
+		linear-gradient(hsl(256, 33, 10) (22px - 1px), transparent 1%) center,
+		hsl(256,33,70);
+	background-size: 22px 1px;
+}
+
+
 body {
     background-color: rgb(53, 53, 53);
     color: white;
@@ -6,11 +24,13 @@ body {
 }
 
 .outputBox {
+    
     width: 500px;
     background-color: rgb(125, 125, 125);
     height: 50px;
     /* margin-left: 35%; */
     margin-top: 2%;
+    margin-bottom: 3%;
     border-radius: 20px;
     box-shadow: 0px 0px 10px white;
     padding: 10px;
@@ -51,4 +71,55 @@ body {
     box-shadow: 0px 0px 10px white;
     cursor: pointer;
 
+}
+
+#prompt {
+    height: 30px;
+    width: 15%;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    border: solid white 1px;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+
+#prompt:focus {
+    outline: none;
+}
+
+#generateButton {
+    margin: 10px;
+    height: 35px;
+    width: auto;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    border: solid white 1px;
+    border-radius: 10px;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+#generateButton:hover {
+    background-color: rgb(7, 97, 21);
+    color: white;
+}
+
+#start, #stop {
+    margin: 5px;
+    height: 40px;
+    width: 70px;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    border: solid white 1px;
+    border-radius: 10px;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+#start {
+    background-color: rgb(3, 92, 3);
+}
+
+#stop {
+    background-color: rgb(140, 6, 6);
 }
