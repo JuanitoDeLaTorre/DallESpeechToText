@@ -204,6 +204,25 @@ recognition.addEventListener("result", (e) => {
 
     compare = [];
   }
+
+  if (compare.includes("copy")) {
+    setTimeout(() => {
+      if (!parseInt(compare[compare.length - 1])) {
+        numberToDownload = wordToNumber(compare[compare.length - 1]);
+        // console.log(wordToNumber(compare[compare.length - 1]));
+      } else {
+        numberToDownload = parseInt(compare[compare.length - 1]);
+      }
+
+      let imgURL = Array.from(document.querySelectorAll("#resultImage"))[
+        numberToDownload - 1
+      ].style.backgroundImage.match(/url\("([^"]+)"\)/)[1];
+
+      console.log(imgURL);
+
+      navigator.clipboard.writeText(imgURL);
+    }, 3000);
+  }
 });
 
 document.querySelector("#stop").addEventListener("click", () => {
@@ -265,6 +284,9 @@ function wordToNumber(word) {
     eighteen: 18,
     nineteen: 19,
     twenty: 20,
+    to: 2,
+    ate: 8,
+    for: 4,
   };
 
   return mapping[word] || NaN;
